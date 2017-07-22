@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GctPagamentoEditDlg" widgetVar="GctPagamentoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditGctPagamentoTitle}">
+            <h:form id="GctPagamentoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{gctPagamentoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditGctPagamentoLabel_pagamentoId}" for="pagamentoId" />
+                        <p:inputText id="pagamentoId" value="#{gctPagamentoController.selected.pagamentoId}" title="#{bundle.EditGctPagamentoTitle_pagamentoId}" required="true" requiredMessage="#{bundle.EditGctPagamentoRequiredMessage_pagamentoId}"/>
+                        <p:outputLabel value="#{bundle.EditGctPagamentoLabel_dataPagamento}" for="dataPagamento" />
+                        <p:calendar id="dataPagamento" pattern="MM/dd/yyyy" value="#{gctPagamentoController.selected.dataPagamento}" title="#{bundle.EditGctPagamentoTitle_dataPagamento}" required="true" requiredMessage="#{bundle.EditGctPagamentoRequiredMessage_dataPagamento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditGctPagamentoLabel_mesReferencia}" for="mesReferencia" />
+                        <p:inputText id="mesReferencia" value="#{gctPagamentoController.selected.mesReferencia}" title="#{bundle.EditGctPagamentoTitle_mesReferencia}" required="true" requiredMessage="#{bundle.EditGctPagamentoRequiredMessage_mesReferencia}"/>
+                        <p:outputLabel value="#{bundle.EditGctPagamentoLabel_valorPago}" for="valorPago" />
+                        <p:inputText id="valorPago" value="#{gctPagamentoController.selected.valorPago}" title="#{bundle.EditGctPagamentoTitle_valorPago}" required="true" requiredMessage="#{bundle.EditGctPagamentoRequiredMessage_valorPago}"/>
+                        <p:outputLabel value="#{bundle.EditGctPagamentoLabel_contratoIdFK}" for="contratoIdFK" />
+                        <p:selectOneMenu id="contratoIdFK" value="#{gctPagamentoController.selected.contratoIdFK}" required="true" requiredMessage="#{bundle.EditGctPagamentoRequiredMessage_contratoIdFK}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{gctContratoController.itemsAvailableSelectOne}"
+                                           var="contratoIdFKItem"
+                                           itemValue="#{contratoIdFKItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{gctPagamentoController.update}" value="#{bundle.Save}" update="display,:GctPagamentoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GctPagamentoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GctPagamentoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
