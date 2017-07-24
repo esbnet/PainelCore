@@ -51,29 +51,35 @@ public class GctContrato implements Serializable {
     @Column(name = "ContratoId")
     private Integer contratoId;
     @Size(max = 30)
+
     @Column(name = "Codigo")
     private String codigo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
+
     @Column(name = "Nome")
     private String nome;
     @Basic(optional = false)
     @NotNull
+
     @Column(name = "DataInicio")
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
     @Basic(optional = false)
     @NotNull
+
     @Column(name = "Duracao")
     @Temporal(TemporalType.DATE)
     private Date duracao;
     @Basic(optional = false)
     @NotNull
+
     @Column(name = "ValorTotal")
     private long valorTotal;
     @Basic(optional = false)
     @NotNull
+
     @Column(name = "Saldo")
     private long saldo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratoIdFK")

@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title><ui:insert name="#{bundle.AppName}"/></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
@@ -34,7 +34,9 @@
             </p:layoutUnit>
 
             <p:layoutUnit position="center">
-                <ui:insert name="body"/>
+                <ui:insert name="body">
+                    <img src="resources/imagem/logo.png" alt=""/>
+                </ui:insert>
             </p:layoutUnit>
 
         </p:layout>
