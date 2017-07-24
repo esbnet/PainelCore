@@ -26,6 +26,20 @@
                         <p:inputText id="valorTotal" value="#{gctContratoController.selected.valorTotal}" title="#{bundle.EditGctContratoTitle_valorTotal}" required="true" requiredMessage="#{bundle.EditGctContratoRequiredMessage_valorTotal}"/>
                         <p:outputLabel value="#{bundle.EditGctContratoLabel_saldo}" for="saldo" />
                         <p:inputText id="saldo" value="#{gctContratoController.selected.saldo}" title="#{bundle.EditGctContratoTitle_saldo}" required="true" requiredMessage="#{bundle.EditGctContratoRequiredMessage_saldo}"/>
+                        <p:outputLabel value="#{bundle.EditGctContratoLabel_fiscal}" for="fiscal" />
+                        <p:selectOneMenu id="fiscal" value="#{gctContratoController.selected.fiscal}" required="true" requiredMessage="#{bundle.EditGctContratoRequiredMessage_fiscal}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="fiscalItem"
+                                           itemValue="#{fiscalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditGctContratoLabel_gestor}" for="gestor" />
+                        <p:selectOneMenu id="gestor" value="#{gctContratoController.selected.gestor}" required="true" requiredMessage="#{bundle.EditGctContratoRequiredMessage_gestor}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="gestorItem"
+                                           itemValue="#{gestorItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{gctContratoController.update}" value="#{bundle.Save}" update="display,:GctContratoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GctContratoEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="GctContratoEditDialog.hide()"/>

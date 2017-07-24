@@ -26,6 +26,18 @@
                         <p:inputText id="valorTotal" value="#{gctContratoController.selected.valorTotal}" title="#{bundle.CreateGctContratoTitle_valorTotal}" required="true" requiredMessage="#{bundle.CreateGctContratoRequiredMessage_valorTotal}"/>
                         <p:outputLabel value="#{bundle.CreateGctContratoLabel_saldo}" for="saldo" />
                         <p:inputText id="saldo" value="#{gctContratoController.selected.saldo}" title="#{bundle.CreateGctContratoTitle_saldo}" required="true" requiredMessage="#{bundle.CreateGctContratoRequiredMessage_saldo}"/>
+                        <p:outputLabel value="#{bundle.CreateGctContratoLabel_fiscal}" for="fiscal" />
+                        <p:selectOneMenu id="fiscal" value="#{gctContratoController.selected.fiscal}" required="true" requiredMessage="#{bundle.EditGctContratoRequiredMessage_fiscal}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="fiscalItem"
+                                           itemValue="#{fiscalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateGctContratoLabel_gestor}" for="gestor" />
+                        <p:selectOneMenu id="gestor" value="#{gctContratoController.selected.gestor}" required="true" requiredMessage="#{bundle.EditGctContratoRequiredMessage_gestor}">
+                            <f:selectItems value="#{usuariosController.itemsAvailableSelectOne}"
+                                           var="gestorItem"
+                                           itemValue="#{gestorItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{gctContratoController.create}" value="#{bundle.Save}" update="display,:GctContratoListForm:datalist,:growl" oncomplete="handleSubmit(args,'GctContratoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="GctContratoCreateDialog.hide()"/>

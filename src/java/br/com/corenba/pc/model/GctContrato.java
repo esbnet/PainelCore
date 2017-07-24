@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -51,39 +53,39 @@ public class GctContrato implements Serializable {
     @Column(name = "ContratoId")
     private Integer contratoId;
     @Size(max = 30)
-
     @Column(name = "Codigo")
     private String codigo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-
     @Column(name = "Nome")
     private String nome;
     @Basic(optional = false)
     @NotNull
-
     @Column(name = "DataInicio")
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
     @Basic(optional = false)
     @NotNull
-
     @Column(name = "Duracao")
     @Temporal(TemporalType.DATE)
     private Date duracao;
     @Basic(optional = false)
     @NotNull
-
     @Column(name = "ValorTotal")
     private long valorTotal;
     @Basic(optional = false)
     @NotNull
-
     @Column(name = "Saldo")
     private long saldo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratoIdFK")
     private Collection<GctPagamento> gctPagamentoCollection;
+    @JoinColumn(name = "Fiscal", referencedColumnName = "idUsuario")
+    @ManyToOne(optional = false)
+    private Usuarios fiscal;
+    @JoinColumn(name = "Gestor", referencedColumnName = "idUsuario")
+    @ManyToOne(optional = false)
+    private Usuarios gestor;
 
     public GctContrato() {
     }
@@ -164,6 +166,22 @@ public class GctContrato implements Serializable {
 
     public void setGctPagamentoCollection(Collection<GctPagamento> gctPagamentoCollection) {
         this.gctPagamentoCollection = gctPagamentoCollection;
+    }
+
+    public Usuarios getFiscal() {
+        return fiscal;
+    }
+
+    public void setFiscal(Usuarios fiscal) {
+        this.fiscal = fiscal;
+    }
+
+    public Usuarios getGestor() {
+        return gestor;
+    }
+
+    public void setGestor(Usuarios gestor) {
+        this.gestor = gestor;
     }
 
     @Override

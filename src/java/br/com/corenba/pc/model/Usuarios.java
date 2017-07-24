@@ -6,7 +6,9 @@
 package br.com.corenba.pc.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -55,6 +59,10 @@ public class Usuarios implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "permissao")
     private String permissao;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fiscal")
+    private Collection<GctContrato> gctContratoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gestor")
+    private Collection<GctContrato> gctContratoCollection1;
 
     public Usuarios() {
     }
@@ -100,6 +108,24 @@ public class Usuarios implements Serializable {
 
     public void setPermissao(String permissao) {
         this.permissao = permissao;
+    }
+
+    @XmlTransient
+    public Collection<GctContrato> getGctContratoCollection() {
+        return gctContratoCollection;
+    }
+
+    public void setGctContratoCollection(Collection<GctContrato> gctContratoCollection) {
+        this.gctContratoCollection = gctContratoCollection;
+    }
+
+    @XmlTransient
+    public Collection<GctContrato> getGctContratoCollection1() {
+        return gctContratoCollection1;
+    }
+
+    public void setGctContratoCollection1(Collection<GctContrato> gctContratoCollection1) {
+        this.gctContratoCollection1 = gctContratoCollection1;
     }
 
     @Override
